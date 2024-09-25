@@ -1,0 +1,7 @@
+[general]
+name = "hash"
+version = "0.1.0"
+authors = ["tttmmmyyyy"]
+
+[build]
+files = ["hash.fix"]
