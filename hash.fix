@@ -14,13 +14,20 @@ trait a : Hash {
 // Type implementing `HashKey` can be keys in a hash table.
 trait HashKey = Hash + Eq;
 
+// Combines two hashes.
+// 
+// Using method described in https://stackoverflow.com/questions/5889238/why-is-xor-the-default-way-to-combine-hashes.
+combine_hash : U64 -> U64 -> U64;
+combine_hash = |a, b| (
+    a.bit_xor(b + 0x517cc1b727220a95_U64 + (a.shift_left(6_U64)) + (a.shift_right(2_U64)))
+);
+
 impl [a : Hash] Array a : Hash {
-    // TODO: Change to a better algorithm.
     hash = |arr| (
         let len = arr.get_size;
         loop((0, 5381_U64), |(i, h)| (
             if i == len { break $ h };
-            let h = h.shift_left(5_U64) + h + arr.@(i).hash;
+            let h = combine_hash(h, arr.@(i).hash);
             continue $ (i+1, h)
         ))
     );
@@ -48,5 +55,5 @@ impl I64 : Hash {
 }
 
 impl [a : Hash, b : Hash] (a, b) : Hash {
-    hash = |(a, b)| [a.hash, b.hash].hash;
+    hash = |(a, b)| combine_hash(a.hash, b.hash);
 }

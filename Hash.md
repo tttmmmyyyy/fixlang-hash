@@ -33,6 +33,14 @@ Hashable types.
 
 # Values
 
+## `namespace Hash`
+
+### `combine_hash : Std::U64 -> Std::U64 -> Std::U64`
+
+Combines two hashes.
+
+Using method described in https://stackoverflow.com/questions/5889238/why-is-xor-the-default-way-to-combine-hashes.
+
 ## `namespace Hash::Hash`
 
 ### `hash : [a : Hash::Hash] a -> Std::U64`
