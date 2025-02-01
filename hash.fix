@@ -1,7 +1,4 @@
-// Provides
-// - `Hash` trait, which converts a value to a hash.
-// - `type HashKey = Hash + Eq` trait alias.
-// - Hashing for basic types.
+// Provides the `Hash` trait and related traits, and basic hashing functions.
 module Hash;
 
 // Hashable types.
