@@ -1,23 +1,20 @@
 # `module Hash`
 
-Provides
-- `Hash` trait, which converts a value to a hash.
-- `type HashKey = Hash + Eq` trait alias.
-- Hashing for basic types.
+Provides the `Hash` trait and related traits, and basic hashing functions.
 
-# Types and aliases
+## Types and aliases
 
-# Traits and aliases
+## Traits and aliases
 
-## `namespace Hash`
+### `namespace Hash`
 
-### `trait a : Hash`
+#### trait `a : Hash`
 
 Hashable types.
 
-#### method `hash : a -> Std::U64`
+##### method `hash : a -> Std::U64`
 
-# Trait implementations
+## Trait implementations
 
 ### `impl [a : Hash::Hash, b : Hash::Hash] (a, b) : Hash::Hash`
 
@@ -31,16 +28,16 @@ Hashable types.
 
 ### `impl Std::U8 : Hash::Hash`
 
-# Values
+## Values
 
-## `namespace Hash`
+### `namespace Hash`
 
-### `combine_hash : Std::U64 -> Std::U64 -> Std::U64`
+#### `combine_hash : Std::U64 -> Std::U64 -> Std::U64`
 
 Combines two hashes.
 
 Using method described in https://stackoverflow.com/questions/5889238/why-is-xor-the-default-way-to-combine-hashes.
 
-## `namespace Hash::Hash`
+### `namespace Hash::Hash`
 
-### `hash : [a : Hash::Hash] a -> Std::U64`
+#### `hash : [a : Hash::Hash] a -> Std::U64`

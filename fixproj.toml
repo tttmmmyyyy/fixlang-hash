@@ -1,6 +1,6 @@
 [general]
 name = "hash"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["tttmmmyyyy"]
 description = "Provides the `Hash` trait and related traits, and basic hashing functions."
 
