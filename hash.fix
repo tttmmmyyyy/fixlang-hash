@@ -38,6 +38,26 @@ impl U8 : Hash {
     hash = |x| x.to_U64.hash;
 }
 
+impl I8 : Hash {
+    hash = |x| x.to_U64.hash;
+}
+
+impl U16 : Hash {
+    hash = |x| x.to_U64.hash;
+}
+
+impl I16 : Hash {
+    hash = |x| x.to_U64.hash;
+}
+
+impl U32 : Hash {
+    hash = |x| x.to_U64.hash;
+}
+
+impl I32 : Hash {
+    hash = |x| x.to_U64.hash;
+}
+
 impl U64 : Hash {
     hash = |x| (
         // https://stackoverflow.com/questions/664014/what-integer-hash-function-are-good-that-accepts-an-integer-hash-key
@@ -48,7 +68,7 @@ impl U64 : Hash {
 }
 
 impl I64 : Hash {
-    hash = I64::to_U64 >> hash;
+    hash = |x| x.to_U64.hash;
 }
 
 impl [a : Hash, b : Hash] (a, b) : Hash {
