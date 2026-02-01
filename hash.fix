@@ -1,6 +1,12 @@
 // Provides the `Hash` trait and related traits, and basic hashing functions.
 module Hash;
 
+import Std::{
+    loop, Array, Eq, I16, I32, I64, I8, String, U16, U32, U64, U8, Array::{get_size, @}, I16::to_U64, 
+    I32::to_U64, I64::to_U64, I8::to_U64, LoopState::{break, continue}, String::@_data, U16::to_U64, 
+    U32::to_U64, U64::{bit_xor, shift_left, shift_right}, U8::to_U64
+};
+
 // Hashable types.
 trait a : Hash {
     hash : a -> U64;
