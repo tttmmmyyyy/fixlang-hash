@@ -2,9 +2,9 @@
 module Hash;
 
 import Std::{
-    loop, Array, Eq, I16, I32, I64, I8, String, U16, U32, U64, U8, Array::{get_size, @}, I16::to_U64, 
-    I32::to_U64, I64::to_U64, I8::to_U64, LoopState::{break, continue}, String::@_data, U16::to_U64, 
-    U32::to_U64, U64::{bit_xor, shift_left, shift_right}, U8::to_U64
+    loop, Array, Eq, I16, I32, I64, I8, String, U16, U32, U64, U8, Array::{@size, @},
+    LoopState::{break, continue}, String::@_data, ToU64::u64,
+    U64::{bit_xor, shift_left, shift_right}
 };
 
 // Hashable types.
@@ -27,7 +27,7 @@ combine_hash = |a, b| (
 
 impl [a : Hash] Array a : Hash {
     hash = |arr| (
-        let len = arr.get_size;
+        let len = arr.@size;
         loop((0, 5381_U64), |(i, h)| (
             if i == len { break $ h };
             let h = combine_hash(h, arr.@(i).hash);
@@ -41,27 +41,27 @@ impl String : Hash {
 }
 
 impl U8 : Hash {
-    hash = |x| x.to_U64.hash;
+    hash = |x| x.u64.hash;
 }
 
 impl I8 : Hash {
-    hash = |x| x.to_U64.hash;
+    hash = |x| x.u64.hash;
 }
 
 impl U16 : Hash {
-    hash = |x| x.to_U64.hash;
+    hash = |x| x.u64.hash;
 }
 
 impl I16 : Hash {
-    hash = |x| x.to_U64.hash;
+    hash = |x| x.u64.hash;
 }
 
 impl U32 : Hash {
-    hash = |x| x.to_U64.hash;
+    hash = |x| x.u64.hash;
 }
 
 impl I32 : Hash {
-    hash = |x| x.to_U64.hash;
+    hash = |x| x.u64.hash;
 }
 
 impl U64 : Hash {
@@ -74,7 +74,7 @@ impl U64 : Hash {
 }
 
 impl I64 : Hash {
-    hash = |x| x.to_U64.hash;
+    hash = |x| x.u64.hash;
 }
 
 impl [a : Hash, b : Hash] (a, b) : Hash {
