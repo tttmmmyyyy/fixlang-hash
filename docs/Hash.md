@@ -1,6 +1,6 @@
 # Hash
 
-Defined in hash@1.1.2
+Defined in hash@1.1.3
 
 Provides the `Hash` trait and related traits, and basic hashing functions.
 

@@ -26,12 +26,18 @@ combine_hash = |a, b| (
 );
 
 impl [a : Hash] Array a : Hash {
+    // The accumulator is multiplied by an odd constant before each element is exclusive-ored into
+    // it: the multiplication carries every bit the accumulator holds up into the bits above it, and
+    // the exclusive or lays the element's hash over all 64 bits at once, so the low bits a hash
+    // table indexes by depend on every element.
+    //
+    // Those low bits come from the low bits of the element hashes, so an instance of `Hash` is
+    // expected to spread its value over all 64 bits.
     hash = |arr| (
         let len = arr.@size;
         loop((0, 5381_U64), |(i, h)| (
             if i == len { break $ h };
-            let h = combine_hash(h, arr.@(i).hash);
-            continue $ (i+1, h)
+            continue $ (i+1, (h * 0x9e3779b97f4a7c15_U64).bit_xor(arr.@(i).hash))
         ))
     );
 }
