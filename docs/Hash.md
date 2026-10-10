@@ -4,6 +4,19 @@ Defined in hash@1.1.3
 
 Provides the `Hash` trait and related traits, and basic hashing functions.
 
+To hash a type of your own, implement `Hash` for it and combine the hashes of its fields by
+`combine_hash`.
+
+```fix
+type Point = struct { x : I64, y : I64 };
+
+impl Point : Hash {
+    hash = |p| combine_hash(p.@x.hash, p.@y.hash);
+}
+
+assert_eq(|_|"", Point { x : 1, y : 2 }.hash, Point { x : 1, y : 2 }.hash)
+```
+
 ## Values
 
 ### namespace Hash
