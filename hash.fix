@@ -1,4 +1,22 @@
 // Provides the `Hash` trait and related traits, and basic hashing functions.
+//
+// To hash a type of your own, implement `Hash` for it and combine the hashes of its fields by
+// `combine_hash`.
+//
+// ```fix
+// # module DocTest;
+// # import Hash;
+// type Point = struct { x : I64, y : I64 };
+//
+// impl Point : Hash {
+//     hash = |p| combine_hash(p.@x.hash, p.@y.hash);
+// }
+//
+// # main : IO ();
+// # main = (
+// assert_eq(|_|"", Point { x : 1, y : 2 }.hash, Point { x : 1, y : 2 }.hash)
+// # );
+// ```
 module Hash;
 
 import Std::{
